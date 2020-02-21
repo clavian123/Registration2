@@ -1,12 +1,19 @@
 package com.app.registration.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -29,6 +36,7 @@ public class UserVoucher {
 	@Column(name = "expiry_date")
 	private Date expiryDate;
 	
+	//di db int harusnya date
 	@Column(name = "redeem_date")
 	private Date redeemDate;
 	
@@ -40,14 +48,24 @@ public class UserVoucher {
 	
 	@Column(name = "cif_code")
 	private String cifCode;
+//	
+//	@OneToMany
+//	@JoinColumn(name = "id_voucher")
+//	private List<Voucher>vouchers;
+//	
+//	@OneToMany(fetch = FetchType.LAZY,mappedBy = "user_voucher")
+//	private List<User>user = new ArrayList<User>();
+//	
+	@ManyToOne(optional = false,cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH} )
+	@JoinColumn(name="id_voucher", nullable = false,insertable = false, updatable = false)
+	private Voucher voucher;
 	
-
 	public UserVoucher() {
-
+		// TODO Auto-generated constructor stub
 	}
 
 	public UserVoucher(long idUserVoucher, String loginName, long idVoucher, Date createdDate, Date expiryDate,
-			Date redeemDate, long status, long redeemCounter, String cifCode) {
+			Date redeemDate, long status, long redeemCounter, String cifCode, Voucher voucher) {
 		super();
 		this.idUserVoucher = idUserVoucher;
 		this.loginName = loginName;
@@ -58,6 +76,7 @@ public class UserVoucher {
 		this.status = status;
 		this.redeemCounter = redeemCounter;
 		this.cifCode = cifCode;
+		this.voucher = voucher;
 	}
 
 	public long getIdUserVoucher() {
@@ -132,5 +151,14 @@ public class UserVoucher {
 		this.cifCode = cifCode;
 	}
 
+	public Voucher getVoucher() {
+		return voucher;
+	}
+
+	public void setVoucher(Voucher voucher) {
+		this.voucher = voucher;
+	}
+
+	
 
 }

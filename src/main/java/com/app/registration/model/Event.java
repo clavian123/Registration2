@@ -3,6 +3,7 @@ package com.app.registration.model;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -36,16 +37,20 @@ public class Event {
 	@Column(name = "event_end")
 	private Date eventEnd;
 	
-	@ManyToMany 
-	@JoinTable(name = "event_reward", joinColumns = { @JoinColumn(name = "id_reward", nullable = false) }, inverseJoinColumns = { @JoinColumn(name = "id_event", nullable = false) })
-	private List<Reward> reward;
+	@ManyToMany
+	@JoinColumn(name="id_reward", nullable = false, insertable = false, updatable = false)
+	private List<Reward>rewards;
 	
+//	@ManyToMany 
+//	@JoinTable(name = "event", joinColumns = { @JoinColumn(name = "id_reward", nullable = false) }, inverseJoinColumns = { @JoinColumn(name = "id_event", nullable = false) })
+//	private List<Reward> reward;
+//	
 	public Event() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public Event(long idEvent, String code, String name, String description, Date eventStart, Date eventEnd,
-			List<Reward> reward) {
+			List<Reward> rewards) {
 		super();
 		this.idEvent = idEvent;
 		this.code = code;
@@ -53,67 +58,10 @@ public class Event {
 		this.description = description;
 		this.eventStart = eventStart;
 		this.eventEnd = eventEnd;
-		this.reward = reward;
+		this.rewards = rewards;
 	}
 
-	public long getIdEvent() {
-		return idEvent;
-	}
-
-	public void setIdEvent(long idEvent) {
-		this.idEvent = idEvent;
-	}
-
-	public String getCode() {
-		return code;
-	}
-
-	public void setCode(String code) {
-		this.code = code;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public Date getEventStart() {
-		return eventStart;
-	}
-
-	public void setEventStart(Date eventStart) {
-		this.eventStart = eventStart;
-	}
-
-	public Date getEventEnd() {
-		return eventEnd;
-	}
-
-	public void setEventEnd(Date eventEnd) {
-		this.eventEnd = eventEnd;
-	}
-
-	public List<Reward> getReward() {
-		return reward;
-	}
-
-	public void setReward(List<Reward> reward) {
-		this.reward = reward;
-	}
-
-	
-	
+		
 	
 	
 }

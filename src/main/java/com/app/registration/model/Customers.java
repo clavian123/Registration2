@@ -1,11 +1,16 @@
 package com.app.registration.model;
 
 import java.util.Date;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -107,7 +112,7 @@ public class Customers {
 	@Column(name="nationality")
 	private String nationality;
 	
-	@Column(name="id_status")
+	@Column(name="status")
 	private long status;
 	
 	@Column(name="created_date")
@@ -129,9 +134,17 @@ public class Customers {
 	@Column(name="pin")
 	private String pin;
 	
+	//@ManyToOne
+	//@JoinColumn(name = "id",nullable = false)
 	
-	@OneToOne(mappedBy = "customers")
-	private User user;
+	//@OneToOne(mappedBy = "customers")
+	//private User user;
+	
+//	@OneToOne
+//    @MapsId
+//    private List<User>users;
+//	
+	
 	
 	public Customers() {
 		// TODO Auto-generated constructor stub
@@ -143,8 +156,7 @@ public class Customers {
 			String currentRtRw, String currentKelurahan, String currentKecamatan, String currentCity,
 			String currentPostalCode, String currentProvince, String mothersMaiden, String birthPlace, Date birthDate,
 			String occupation, String monthlyIncome, String email, String mobileNumber, String nationality, long status,
-			Date createdDate, String createdBy, Date lastUpdatedDate, String lastUpdatedBy, String pan, String pin,
-			User user) {
+			Date createdDate, String createdBy, Date lastUpdatedDate, String lastUpdatedBy, String pan, String pin) {
 		super();
 		this.idCustomer = idCustomer;
 		this.cifCode = cifCode;
@@ -184,7 +196,6 @@ public class Customers {
 		this.lastUpdatedBy = lastUpdatedBy;
 		this.pan = pan;
 		this.pin = pin;
-		this.user = user;
 	}
 
 	public long getIdCustomer() {
@@ -491,15 +502,8 @@ public class Customers {
 		this.pin = pin;
 	}
 
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
 	
-	
+
+		
 }
 

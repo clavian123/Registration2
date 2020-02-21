@@ -1,7 +1,9 @@
 package com.app.registration.model;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +11,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -40,22 +45,34 @@ public class Voucher {
 	@Column(name="description")
 	private String description;
 	
-	@Column(name="id_status")
+	@Column(name="status")
 	private long idStatus;
 	
 	
-	@ManyToOne
-	@JoinColumn(name="id_status",nullable = false, insertable = false, updatable = false)
-	private Status status2;
-
+	//nanti cek
 	
 	
-
+//	@ManyToOne
+//	@JoinColumn(name="id_status",nullable = false)
+//	private Status status2;
+//	
+//	@ManyToOne
+//	@JoinColumn(name="id_voucher",nullable = false)
+//	private UserVoucher userVoucher;
+	
+	@ManyToOne(optional = false,cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+	@JoinColumn(name="id_status", nullable = false, insertable = false, updatable = false)
+	private Status status;
+	
+//	@OneToMany(mappedBy = "voucher")
+//	private List<UserVoucher>userVouchers;
+	
 	public Voucher() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public Voucher(long idVoucher, String voucherCode, String type, long maxRedeem, Date startDate, Date endDate,
-			long amount, String description, long idStatus, Status status2) {
+			long amount, String description, long idStatus, Status status) {
 		super();
 		this.idVoucher = idVoucher;
 		this.voucherCode = voucherCode;
@@ -66,7 +83,7 @@ public class Voucher {
 		this.amount = amount;
 		this.description = description;
 		this.idStatus = idStatus;
-		this.status2 = status2;
+		this.status = status;
 	}
 
 	public long getIdVoucher() {
@@ -141,13 +158,15 @@ public class Voucher {
 		this.idStatus = idStatus;
 	}
 
-	public Status getStatus2() {
-		return status2;
+	public Status getStatus() {
+		return status;
 	}
 
-	public void setStatus2(Status status2) {
-		this.status2 = status2;
+	public void setStatus(Status status) {
+		this.status = status;
 	}
-
+	
+	
+	
 		
 }

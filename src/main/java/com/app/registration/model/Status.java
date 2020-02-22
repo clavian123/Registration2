@@ -1,21 +1,11 @@
 package com.app.registration.model;
 
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -38,42 +28,6 @@ public class Status {
 	
 	@Column(name="description")
 	private String description;
-	
-	//cek ntr
-	//@OneToMany(mappedBy = "status")
-//	@OneToMany
-//	@JoinColumn(name = "id_status")
-//	private List<Reward>rewards;
-//	
-//	@OneToMany(mappedBy = "status")
-//	@JoinColumn(name = "id_status")
-//	private List<Voucher>vouchers;
-	
-	
-	//@OneToOne
-	//@JoinColumn(name = "id_dummy_customer")	     
-
-//	@OneToOne(fetch = FetchType.LAZY,optional = false)
-//	@JoinColumn(name = "id_dummy_customer",nullable = false )
-//	private List<DummyCustomer>dummyCustomers;
-	
-//	@OneToMany(mappedBy = "status") 
-//    private List<Reward>reward;
-	
-//	@OneToOne
-//    @MapsId
-//    private AllCustomersData allCustomersData;
-//	
-//	
-//	@OneToMany(mappedBy = "status")
-//	private List<Reward>rewards;
-	
-//	@OneToMany(mappedBy = "status")
-//	private List<Voucher>vouchers;
-	
-//	@OneToOne
-//	@MapsId
-//	private AllCustomersData allCustomersData;
 	
 	public Status() {
 		// TODO Auto-generated constructor stub

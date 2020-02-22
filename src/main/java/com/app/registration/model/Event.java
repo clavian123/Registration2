@@ -37,14 +37,11 @@ public class Event {
 	@Column(name = "event_end")
 	private Date eventEnd;
 	
-	@ManyToMany
-	@JoinColumn(name="id_reward", nullable = false, insertable = false, updatable = false)
+	@ManyToMany (cascade = CascadeType.PERSIST)
+	@JoinTable(name = "event_reward", joinColumns = { @JoinColumn(name = "id_reward", nullable = false) }, inverseJoinColumns = { @JoinColumn(name = "id_event", nullable = false) })
+	
 	private List<Reward>rewards;
 	
-//	@ManyToMany 
-//	@JoinTable(name = "event", joinColumns = { @JoinColumn(name = "id_reward", nullable = false) }, inverseJoinColumns = { @JoinColumn(name = "id_event", nullable = false) })
-//	private List<Reward> reward;
-//	
 	public Event() {
 		// TODO Auto-generated constructor stub
 	}

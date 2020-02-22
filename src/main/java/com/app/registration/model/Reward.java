@@ -1,6 +1,5 @@
 package com.app.registration.model;
 
-import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -9,10 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -29,25 +25,11 @@ public class Reward {
 	@Column(name = "type")
 	private String type;
 	
-	@Column(name="status")
+	@Column(name="id_status")
 	private long idStatus;
 	
 	@Column(name="voucher_code")
 	private long voucherCode;
-	
-	
-//	@ManyToMany(mappedBy = "reward") 
-//    private List<Event>events;
-	
-	
-//	@ManyToOne
-//	@JoinColumn(name="status",referencedColumnName ="id_status" , nullable = false)
-//	@JoinColumn(name = "id_status", nullable = false)
-//	private Status status2;
-	
-//	@ManyToOne
-//	@JoinTable(name = "status", joinColumns = { @JoinColumn(name = "id_status", nullable = false) }, inverseJoinColumns = { @JoinColumn(name = "id_reward", nullable = false) })
-//	private List<Status> status;
 	
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
 	@JoinColumn(name="id_status", nullable = false, insertable = false, updatable = false)
@@ -129,7 +111,12 @@ public class Reward {
 		this.status = status;
 	}
 
-	
+	@Override
+	public String toString()
+	{
+		return "[type=" + type + ", status=" + idStatus + ", " +
+	            "id=" + idReward + ", reward_code=" + rewardCode + ", voucher_code=" + voucherCode + "]";
+		}
 		
 			
 }

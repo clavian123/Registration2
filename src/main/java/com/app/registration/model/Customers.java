@@ -1,17 +1,12 @@
-package com.app.registration.model;
+  package com.app.registration.model;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -112,12 +107,11 @@ public class Customers {
 	@Column(name="nationality")
 	private String nationality;
 	
-	@Column(name="status")
+	@Column(name="id_status")
 	private long status;
 	
 	@Column(name="created_date")
 	private Date createdDate;
-	
 	
 	@Column(name="created_by")
 	private String createdBy;
@@ -133,18 +127,6 @@ public class Customers {
 	
 	@Column(name="pin")
 	private String pin;
-	
-	//@ManyToOne
-	//@JoinColumn(name = "id",nullable = false)
-	
-	//@OneToOne(mappedBy = "customers")
-	//private User user;
-	
-//	@OneToOne
-//    @MapsId
-//    private List<User>users;
-//	
-	
 	
 	public Customers() {
 		// TODO Auto-generated constructor stub

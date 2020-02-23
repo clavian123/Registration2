@@ -154,7 +154,8 @@ CREATE TABLE `event` (
   `name` varchar(255) NOT NULL,
   `description` varchar(255) DEFAULT NULL,
   `event_start` datetime NOT NULL,
-  `event_end` datetime NOT NULL
+  `event_end` datetime NOT NULL,
+  `id` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -226,7 +227,9 @@ CREATE TABLE `reward` (
   `reward_code` varchar(255) NOT NULL,
   `type` varchar(20) NOT NULL,
   `status` bigint(20) NOT NULL,
-  `voucher_code` bigint(20) NOT NULL
+  `voucher_code` bigint(20) NOT NULL,
+  `id` bigint(20) NOT NULL,
+  `statusmodel_id` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --

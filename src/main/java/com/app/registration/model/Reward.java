@@ -25,15 +25,15 @@ public class Reward {
 	@Column(name = "type")
 	private String type;
 	
-	@Column(name="id_status")
-	private long idStatus;
+	@Column(name="status")
+	private long status;
 	
 	@Column(name="voucher_code")
 	private long voucherCode;
 	
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
-	@JoinColumn(name="id_status", nullable = false, insertable = false, updatable = false)
-	private Status status;
+	@JoinColumn(name="status", nullable = false, insertable = false, updatable = false)
+	private Status status1;
 	
 	
 	public Reward() {
@@ -41,14 +41,14 @@ public class Reward {
 	}
 
 
-	public Reward(long idReward, String rewardCode, String type, long idStatus, long voucherCode, Status status) {
+	public Reward(long idReward, String rewardCode, String type, long status, long voucherCode, Status status1) {
 		super();
 		this.idReward = idReward;
 		this.rewardCode = rewardCode;
 		this.type = type;
-		this.idStatus = idStatus;
-		this.voucherCode = voucherCode;
 		this.status = status;
+		this.voucherCode = voucherCode;
+		this.status1 = status1;
 	}
 
 
@@ -82,13 +82,13 @@ public class Reward {
 	}
 
 
-	public long getIdStatus() {
-		return idStatus;
+	public long getStatus() {
+		return status;
 	}
 
 
-	public void setIdStatus(long idStatus) {
-		this.idStatus = idStatus;
+	public void setIdStatus(long status) {
+		this.status = status;
 	}
 
 
@@ -102,19 +102,19 @@ public class Reward {
 	}
 
 
-	public Status getStatus() {
-		return status;
+	public Status getStatus1() {
+		return status1;
 	}
 
 
-	public void setStatus(Status status) {
-		this.status = status;
+	public void setStatus1(Status status1) {
+		this.status1 = status1;
 	}
 
 	@Override
 	public String toString()
 	{
-		return "[type=" + type + ", status=" + idStatus + ", " +
+		return "[type=" + type + ", status=" + status + ", " +
 	            "id=" + idReward + ", reward_code=" + rewardCode + ", voucher_code=" + voucherCode + "]";
 		}
 		

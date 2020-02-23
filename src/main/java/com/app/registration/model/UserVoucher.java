@@ -1,15 +1,20 @@
 package com.app.registration.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -36,7 +41,7 @@ public class UserVoucher {
 	@Column(name = "redeem_date")
 	private Date redeemDate;
 	
-	@Column(name = "id_status")
+	@Column(name = "status")
 	private long status;
 	
 	@Column(name="redeem_counter")
@@ -47,13 +52,13 @@ public class UserVoucher {
 //	
 //	@OneToMany
 //	@JoinColumn(name = "id_voucher")
-//	private List<Voucher>vouchers;
-//	
+//	private Voucher voucher;
+	
 //	@OneToMany(fetch = FetchType.LAZY,mappedBy = "user_voucher")
 //	private List<User>user = new ArrayList<User>();
 //	
 	@ManyToOne(optional = false,cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH} )
-	@JoinColumn(name="id_voucher", nullable = false,insertable = false, updatable = false)
+	@JoinColumn(name="id_voucher", nullable = true,insertable = false, updatable = false)
 	private Voucher voucher;
 	
 	public UserVoucher() {

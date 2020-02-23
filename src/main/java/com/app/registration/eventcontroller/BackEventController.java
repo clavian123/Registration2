@@ -1,5 +1,8 @@
 package com.app.registration.eventcontroller;
 
+import java.io.IOException;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,9 +18,11 @@ import com.app.registration.eventmodel.BackRequest;
 import com.app.registration.eventmodel.BackResponse;
 import com.app.registration.eventmodel.ConvertReward;
 import com.app.registration.model.Status;
+import com.app.registration.model.UserVoucher;
 import com.app.registration.model.Voucher;
 import com.app.registration.repository.StatusRepository;
 import com.app.registration.repository.VoucherRepository;
+import com.app.registration.service.UserVoucherService;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -35,6 +40,9 @@ public class BackEventController {
 	@Autowired
 	VoucherRepository voucherRepository;
 	
+	@Autowired
+	UserVoucherService userVoucherService;
+	
 	@RequestMapping("/backsample")
 	public BackResponse BackSample(@RequestParam(value = "Validation",
 	defaultValue = "Validation") String Validation, String SetOfReward) {
@@ -46,7 +54,7 @@ public class BackEventController {
 	}
 	
 	@RequestMapping(value = "/backsend", method = RequestMethod.POST)
-	public BackResponse Test(@RequestBody BackRequest inputBackPayload) {
+	public BackResponse Test(@RequestBody BackRequest inputBackPayload) throws IOException {
 		BackResponse backResponse = new BackResponse();
 		backResponse.setValidation(inputBackPayload.getValidation());
 		backResponse.setSetOfReward(inputBackPayload.getSetOfReward());
@@ -75,6 +83,17 @@ public class BackEventController {
 									log.debug("Voucher Code:" + v.getVoucherCode());
 									log.debug("Type Voucher:" + v.getType());
 									//SET DATA KE DATABASE TABLE USER_VOUCHER
+									Calendar cal = Calendar.getInstance(); 
+									cal.add(Calendar.MONTH, 1);
+									Date dt = cal.getTime();
+									UserVoucher userVoucher = new UserVoucher();
+									userVoucher.setIdVoucher(v.getIdVoucher());
+									userVoucher.setLoginName(inputBackPayload.getLoginName());
+									userVoucher.setStatus(v.getStatus());
+									userVoucher.setCifCode(inputBackPayload.getCifCode());
+									userVoucher.setCreatedDate(new Date());
+									userVoucher.setExpiryDate(dt);
+									userVoucherService.saveUserVoucher(userVoucher);
 									//Yang bisa di dapat dari sini: id_voucher, id_status
 								}
 							}

@@ -25,8 +25,8 @@ public class User {
 	@Column(name = "password")
 	private String password;
 	
-	@Column(name="customer")
-	private long customer;
+	@Column(name="id_customer")
+	private long idCustomer;
 	
 	@Column(name="created_date")
 	private Date createdDate;
@@ -56,7 +56,7 @@ public class User {
 		this.idUser = idUser;
 		this.username = username;
 		this.password = password;
-		this.customer = customer;
+		this.idCustomer = customer;
 		this.createdDate = createdDate;
 		this.customers = customers;
 	}
@@ -85,12 +85,12 @@ public class User {
 		this.password = password;
 	}
 
-	public long getCustomer() {
-		return customer;
+	public long getIdCustomer() {
+		return idCustomer;
 	}
 
-	public void setCustomer(long customer) {
-		this.customer = customer;
+	public void setIdCustomer(long idCustomer) {
+		this.idCustomer = idCustomer;
 	}
 
 	public Date getCreatedDate() {

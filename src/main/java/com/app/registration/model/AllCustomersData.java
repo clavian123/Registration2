@@ -110,8 +110,8 @@ public class AllCustomersData {
 	@Column(name="nationality")
 	private String nationality;
 	
-	@Column(name="id_status")
-	private long idStatus;
+	@Column(name="status")
+	private long status;
 	
 	@Column(name="created_date")
 	private Date createdDate;
@@ -132,8 +132,8 @@ public class AllCustomersData {
 	private String pin;
 
 	@OneToOne(optional = false)
-	@JoinColumn(name="id_status", insertable = false, updatable = false)
-	private Status status;
+	@JoinColumn(name="status", insertable = false, updatable = false)
+	private Status status1;
 
 	public long getIdDummyCustomer() {
 		return idDummyCustomer;
@@ -383,12 +383,12 @@ public class AllCustomersData {
 		this.nationality = nationality;
 	}
 
-	public long getIdStatus() {
-		return idStatus;
+	public long getStatus() {
+		return status;
 	}
 
-	public void setIdStatus(long idStatus) {
-		this.idStatus = idStatus;
+	public void setStatus(long status) {
+		this.status = status;
 	}
 
 	public Date getCreatedDate() {
@@ -439,12 +439,12 @@ public class AllCustomersData {
 		this.pin = pin;
 	}
 
-	public Status getStatus() {
-		return status;
+	public Status getStatus1() {
+		return status1;
 	}
 
-	public void setStatus(Status status) {
-		this.status = status;
+	public void setStatus1(Status status1) {
+		this.status1 = status1;
 	}
 	
 	

@@ -41,8 +41,8 @@ public class Voucher {
 	@Column(name="description")
 	private String description;
 	
-	@Column(name="id_status")
-	private long idStatus;
+	@Column(name="status")
+	private long status;
 	
 	
 	//nanti cek
@@ -57,8 +57,8 @@ public class Voucher {
 //	private UserVoucher userVoucher;
 	
 	@ManyToOne(optional = false,cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
-	@JoinColumn(name="id_status", nullable = false, insertable = false, updatable = false)
-	private Status status;
+	@JoinColumn(name="status", nullable = false, insertable = false, updatable = false)
+	private Status status1;
 	
 //	@OneToMany(mappedBy = "voucher")
 //	private List<UserVoucher>userVouchers;
@@ -68,7 +68,7 @@ public class Voucher {
 	}
 
 	public Voucher(long idVoucher, String voucherCode, String type, long maxRedeem, Date startDate, Date endDate,
-			long amount, String description, long idStatus, Status status) {
+			long amount, String description, long status, Status status1) {
 		super();
 		this.idVoucher = idVoucher;
 		this.voucherCode = voucherCode;
@@ -78,8 +78,8 @@ public class Voucher {
 		this.endDate = endDate;
 		this.amount = amount;
 		this.description = description;
-		this.idStatus = idStatus;
 		this.status = status;
+		this.status1 = status1;
 	}
 
 	public long getIdVoucher() {
@@ -146,20 +146,20 @@ public class Voucher {
 		this.description = description;
 	}
 
-	public long getIdStatus() {
-		return idStatus;
-	}
-
-	public void setIdStatus(long idStatus) {
-		this.idStatus = idStatus;
-	}
-
-	public Status getStatus() {
+	public long getStatus() {
 		return status;
 	}
 
-	public void setStatus(Status status) {
+	public void setStatus(long status) {
 		this.status = status;
+	}
+
+	public Status getStatus1() {
+		return status1;
+	}
+
+	public void setStatus1(Status status1) {
+		this.status1 = status1;
 	}
 	
 	

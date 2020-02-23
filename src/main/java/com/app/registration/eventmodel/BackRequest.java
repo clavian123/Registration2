@@ -1,9 +1,23 @@
 package com.app.registration.eventmodel;
 
 public class BackRequest {
-	String Validation;
-	String SetOfReward;
+	private String Validation;
+	private String SetOfReward;
+	private String loginName;
+	private String cifCode;
 	
+	public String getCifCode() {
+		return cifCode;
+	}
+	public void setCifCode(String cifCode) {
+		this.cifCode = cifCode;
+	}
+	public String getLoginName() {
+		return loginName;
+	}
+	public void setLoginName(String loginName) {
+		this.loginName = loginName;
+	}
 	public String getValidation() {
 		return Validation;
 	}
@@ -16,8 +30,5 @@ public class BackRequest {
 	public void setSetOfReward(String setOfReward) {
 		SetOfReward = setOfReward;
 	}
-	
-
-	
 
 }

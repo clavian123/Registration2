@@ -3,19 +3,18 @@ package com.app.registration.controller;
 import java.sql.Blob;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import java.util.Random;
 
 import javax.sql.rowset.serial.SerialBlob;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.app.registration.model.AllCustomersData;
 import com.app.registration.model.Customers;
 import com.app.registration.model.CekPinResponse;
@@ -31,8 +30,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @RestController
 public class AllCustomersDataController {
 	
-	private static Logger log = Logger.getLogger(AllCustomersDataController.class);
-	
 	@Autowired
 	AllCustomersDataService customerService;
 	
@@ -45,20 +42,8 @@ public class AllCustomersDataController {
 	@Autowired
 	MailService mailService;
 	
-	@GetMapping(value ="/allCustomer", headers = "Accept=application/json")
-	public List<AllCustomersData> list(){
-		List<AllCustomersData> list = null;
-		try {
-			list = customerService.getAllCustomersData();
-		}
-		catch(Exception e){
-			log.error("Cek jun : "+e.getMessage(), e);
-		}
-		return list;
-	}
-	
 	@RequestMapping(value = "/checkPan", method = RequestMethod.POST)
-	public CheckPanResponse cekToken(@RequestBody PostRequest pan) {
+	ResponseEntity<CheckPanResponse> cekToken(@RequestBody PostRequest pan) {
 		CheckPanResponse response = new CheckPanResponse();
 		Date now = new Date();
 		Calendar expired = Calendar.getInstance();
@@ -97,11 +82,11 @@ public class AllCustomersDataController {
 			response.setCekPan(false);
 		}
 		
-		return response;
+		return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(response);
 	}
 	
 	@RequestMapping(value = "/checkPin", method = RequestMethod.POST)
-	public CekPinResponse cekPin(@RequestBody PostRequest pin) {
+	ResponseEntity<CekPinResponse> cekPin(@RequestBody PostRequest pin) {
 		CekPinResponse response = new CekPinResponse();
 		AllCustomersData data = customerService.getCustomerByCif(pin.getCif_code());
 		Customers data1 = cusService.getCustomerByCifCode(pin.getCif_code());
@@ -119,7 +104,7 @@ public class AllCustomersDataController {
 			response.setCekPin(false);
 		}
 		
-		return response;
+		return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(response);
 	}
 	
 }

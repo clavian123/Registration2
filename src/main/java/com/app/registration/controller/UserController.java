@@ -18,8 +18,6 @@ import com.app.registration.model.PostRequest;
 import com.app.registration.model.RegistrationResponse;
 import com.app.registration.model.ResetPasswordResponse;
 import com.app.registration.model.User;
-import com.app.registration.repository.CustomersRepository;
-import com.app.registration.repository.UserRepository;
 import com.app.registration.service.AllCustomersDataService;
 import com.app.registration.service.CustomersService;
 import com.app.registration.service.UserService;

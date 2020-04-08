@@ -3,7 +3,6 @@ package com.app.registration.controller;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,8 +16,6 @@ import com.app.registration.service.TempRegisService;
 
 @RestController
 public class TempRegisController {
-	
-	private static Logger log = Logger.getLogger(TempRegisController.class);
 	
 	public static boolean compareDates(Date date1,Date date2){
         if(date1.after(date2)){

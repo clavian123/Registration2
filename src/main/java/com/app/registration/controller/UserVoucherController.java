@@ -1,8 +1,6 @@
 package com.app.registration.controller;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.app.registration.model.PostRequest;
 import com.app.registration.model.UserVoucher;
-import com.app.registration.model.Voucher;
 import com.app.registration.service.UserVoucherService;
 import com.app.registration.service.VoucherService;
 
